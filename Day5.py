@@ -34,14 +34,15 @@ def random_password_hard(password):
     e.g. 4 letter, 2 symbol, 2 number = g^2jk8&
     '''
     hard_password = ''
+    # <------------------ This code can be avoided using random.shuffle() function --------------------->
     password_copy =[ x for x in password]
-    for i in range(len(password)-1):
+    for _ in range(len(password)-1):
         final_index = len(password_copy) - 1
         rand_index = random.randint(0, final_index)
         hard_password += password_copy[rand_index]
         password_copy.pop(rand_index)
     return hard_password+password_copy[-1]
-
+    # <------------------ This code can be avoided using random.shuffle() function --------------------->
 easy_password = random_password_easy(total_length, nr_letters, nr_symbols, nr_numbers)
 print(f'Easy generated password:{easy_password}')
 print(f'Hard generated password:{random_password_hard(easy_password)}')
