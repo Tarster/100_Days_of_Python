@@ -1,3 +1,20 @@
+logo = """           
+ ,adPPYba, ,adPPYYba,  ,adPPYba, ,adPPYba, ,adPPYYba, 8b,dPPYba,  
+a8"     "" ""     `Y8 a8P_____88 I8[    "" ""     `Y8 88P'   "Y8  
+8b         ,adPPPPP88 8PP"""""""  `"Y8ba,  ,adPPPPP88 88          
+"8a,   ,aa 88,    ,88 "8b,   ,aa aa    ]8I 88,    ,88 88          
+ `"Ybbd8"' `"8bbdP"Y8  `"Ybbd8"' `"YbbdP"' `"8bbdP"Y8 88   
+            88             88                                 
+           ""             88                                 
+                          88                                 
+ ,adPPYba, 88 8b,dPPYba,  88,dPPYba,   ,adPPYba, 8b,dPPYba,  
+a8"     "" 88 88P'    "8a 88P'    "8a a8P_____88 88P'   "Y8  
+8b         88 88       d8 88       88 8PP""""""" 88          
+"8a,   ,aa 88 88b,   ,a8" 88       88 "8b,   ,aa 88          
+ `"Ybbd8"' 88 88`YbbdP"'  88       88  `"Ybbd8"' 88          
+              88                                             
+              88           
+"""
 def custom_is_numeric(number_string):
     '''Custom implementation to check if a string contains number'''
     is_positive_integer = number_string.isdigit()
@@ -14,8 +31,10 @@ def negative_shift(shift_number,user_message):
     for letter in user_message:
         if letter.isalpha():
             numeric_value = ord(letter) + shift_number 
-            if (64 < numeric_value <91 ) or (96 < numeric_value < 123):
-                            encoded_message.append(chr(numeric_value))
+            if (64 < numeric_value <91 ) and letter.isupper():
+                encoded_message.append(chr(numeric_value))
+            elif letter.islower() and (96 < numeric_value < 123):
+                encoded_message.append(chr(numeric_value))
             else:
                 encoded_message.append(chr(numeric_value + 26 ))
         else:
@@ -29,7 +48,9 @@ def positive_shift(shift_number,user_message):
     for letter in user_message:
         if letter.isalpha():
             numeric_value = shift_number + ord(letter)
-            if (64 < numeric_value <91 ) or (95 < numeric_value < 123):
+            if letter.islower() and (95 < numeric_value < 123):
+                encoded_message.append(chr(numeric_value))
+            elif (64 < numeric_value < 91 ) and letter.isupper():
                 encoded_message.append(chr(numeric_value))
             else:
                 encoded_message.append(chr(numeric_value - 26 ))
@@ -68,19 +89,20 @@ def decode():
         while not custom_is_numeric(shift_number):
             shift_number = input("Type the shift number: ")
 
-        shift_number = int(shift_number)
+        shift_number = int(shift_number) * (-1)
 
         if shift_number == 0:
             print(f'Here is the encoded result: {user_message}')
             return
         
         if shift_number < 0:
-            decoded_string = positive_shift(shift_number,user_message) 
+            decoded_string = negative_shift(shift_number,user_message) 
             
         else:
-            decoded_string = negative_shift(shift_number,user_message) 
+            decoded_string = positive_shift(shift_number,user_message) 
         print(f'Here is the decoded result: {decoded_string}')
 
+print(logo)
 user_continue = True
 while user_continue:
     while True:
@@ -94,7 +116,10 @@ while user_continue:
         else: 
             print("Please provide a valid input.")
     user_continue = input("Type 'yes' if you want to go again. Otherwise type 'no': ")
-    if user_continue == 'yes':
+    if user_continue.lower() == 'yes':
         user_continue = True
     else:
         user_continue = False
+
+# ABCDEFGHIJKLMNOPQRSTUVWXYZ
+# abcdefghijklmnopqrstuvwxyz
