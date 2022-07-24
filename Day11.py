@@ -29,27 +29,29 @@ while option.lower() != 'n':
     print(f'Your cards: {player_cards}')
     print(f"Computer's first card: {computer_cards[0]}")
     # print(sum(player_cards))
-    some_sum = sum(player_cards)
-    print(some_sum)
-    while True:
+    while sum(player_cards) < 21:
         another_card = input("Type  'y' to get another card, type 'n' to pass: ")
+        
         if another_card == 'y':
             another_card = custom_rand()
             player_cards.append(another_card)
-        
+            print(f'Your cards: {player_cards}')
+                   
             if sum(player_cards) > 21:
                 print("Game over. You lose.")
                 print(f"Computer's final hand: {computer_cards}")
                 break
-            continue
  
         else:
             if sum(player_cards) > sum(computer_cards):
                 print(f"Computer's final hand: {computer_cards}")
                 print("You win!!!!")
+            elif sum(player_cards) == sum(computer_cards):
+                print(f"Computer's final hand: {computer_cards}")
+                print("It's a draw.")
             else:
                 print("Game over. You lose.")
                 print(f"Computer's final hand: {computer_cards}")
             break
     
-    input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+    option = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
