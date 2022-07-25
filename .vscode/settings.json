@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "euouae"
+    ],
+    "python.analysis.extraPaths": [
+        "./Data/Day14"
     ]
 }

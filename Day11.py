@@ -12,6 +12,9 @@ logo = r"""
 """
 
 def custom_rand():
+    """
+    A function to generate random number tailored for blackjack. 
+    """
     number = random.randint(1, 13)
     if number > 10:
         number = 10
@@ -30,7 +33,7 @@ while option.lower() != 'n':
     print(f"Computer's first card: {computer_cards[0]}")
     # print(sum(player_cards))
     while sum(player_cards) < 21:
-        another_card = input("Type  'y' to get another card, type 'n' to pass: ")
+        another_card = input("Type 'y' to get another card, type 'n' to pass: ")
         
         if another_card == 'y':
             another_card = custom_rand()
