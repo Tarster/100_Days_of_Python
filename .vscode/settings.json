@@ -3,6 +3,7 @@
         "euouae"
     ],
     "python.analysis.extraPaths": [
-        "./Data/Day14"
+        "./Data/Day14",
+        "./Data/Day16"
     ]
 }
