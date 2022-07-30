@@ -4,6 +4,7 @@
     ],
     "python.analysis.extraPaths": [
         "./Data/Day14",
-        "./Data/Day16"
+        "./Data/Day16",
+        "./Data/Day17"
     ]
 }
